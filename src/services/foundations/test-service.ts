@@ -1,9 +1,9 @@
 import { Executable } from '../../models/runtime/executable';
-import { executeInRuntime } from '../../function-runtime';
+import { executeWithRuntime } from '../../function-runtime';
 
 export class TestService {
     doWork(shouldFail: boolean): string {
-        return executeInRuntime({
+        return executeWithRuntime({
             tracing: this.doWorkTracing,
             tryCatch: this.doWorkTryCatch,
             executable: () => this.doWorkExecutable(shouldFail),
