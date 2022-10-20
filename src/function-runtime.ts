@@ -1,5 +1,5 @@
-import { Executable } from './executable';
-import { FunctionRuntimeConfiguration } from './function-runtime-configuration';
+import { Executable } from './models/runtime/executable';
+import { FunctionRuntimeConfiguration } from './models/runtime/function-runtime-configuration';
 
 export function executeInRuntime<T>(
     runtime: FunctionRuntimeConfiguration<T>

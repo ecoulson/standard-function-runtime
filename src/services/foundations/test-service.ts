@@ -1,5 +1,5 @@
-import { Executable } from './executable';
-import { executeInRuntime } from './function-runtime';
+import { Executable } from '../../models/runtime/executable';
+import { executeInRuntime } from '../../function-runtime';
 
 export class TestService {
     doWork(shouldFail: boolean): string {
