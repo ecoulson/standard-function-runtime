@@ -4,7 +4,13 @@ import { executeWithRuntime } from '../../function-runtime';
 export class TestService {
     doWork(shouldFail: boolean): string {
         return executeWithRuntime({
-            tracing: this.doWorkTracing,
+            tracing: (executable) =>
+                this.doWorkTracing(
+                    {
+                        shouldFail: shouldFail ? 'true' : 'false',
+                    },
+                    executable
+                ),
             tryCatch: this.doWorkTryCatch,
             businessLogic: () => this.doWorkExecutable(shouldFail),
         });
@@ -25,8 +31,12 @@ export class TestService {
         }
     }
 
-    doWorkTracing(executable: Executable<string>): string {
+    doWorkTracing(
+        tags: Record<string, string>,
+        executable: Executable<string>
+    ): string {
         console.log('Doing tracing goodness.');
+        console.log('Tags', tags);
         return executable();
     }
 }
