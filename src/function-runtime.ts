@@ -13,7 +13,7 @@ export function executeWithRuntime<T>(
         )
         .reduce<Executable<T>>(
             (executable, middleware) => () => middleware(executable),
-            runtime.executable
+            runtime.businessLogic
         );
     return runtimeDecoratedExecutable();
 }

@@ -6,7 +6,7 @@ export class TestService {
         return executeWithRuntime({
             tracing: this.doWorkTracing,
             tryCatch: this.doWorkTryCatch,
-            executable: () => this.doWorkExecutable(shouldFail),
+            businessLogic: () => this.doWorkExecutable(shouldFail),
         });
     }
 
