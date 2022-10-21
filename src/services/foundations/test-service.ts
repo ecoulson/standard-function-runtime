@@ -1,19 +1,12 @@
 import { Executable } from '../../models/runtime/executable';
-import { executeWithRuntime } from '../../function-runtime';
+import { createRunTime } from '../../function-runtime';
 
 export class TestService {
     doWork(shouldFail: boolean): string {
-        return executeWithRuntime({
-            tracing: (executable) =>
-                this.doWorkTracing(
-                    {
-                        shouldFail: shouldFail ? 'true' : 'false',
-                    },
-                    executable
-                ),
-            tryCatch: this.doWorkTryCatch,
-            businessLogic: () => this.doWorkExecutable(shouldFail),
-        });
+        return createRunTime(() => this.doWorkExecutable(shouldFail))
+            .withExceptionHandling()
+            .withTracing()
+            .run();
     }
 
     doWorkExecutable(shouldFail: boolean): string {
